@@ -33,8 +33,8 @@ void setup() {
 ```
 *JavaScript*
 ``` javascript
-const PIN = 10;
-const NUM_LEDS = 60;
+var PIN = 10;
+var NUM_LEDS = 60;
 var strip = new Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);
 
 function setup() {

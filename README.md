@@ -7,7 +7,7 @@ Simulates an LED strip and allows very NeoPixel-like access
 ## Usage
 You'll wirte your code in JavaScript. But the syntax of original Adafruit_NeoPixel c++ class is simlulated as good as possible.  
 Your original C++ code could for example translate like this:  
-C++
+*C++*
 ``` c++
 #define PIN 10
 #define NUM_LEDS = 60
@@ -21,7 +21,7 @@ void setup() {
   strip.show()
 }
 ```
-JavaScript
+*JavaScript*
 ``` javascript
 const PIN = 10
 const NUM_LEDS = 60
@@ -36,9 +36,9 @@ function setup() {
 }
 ```
 
-## Ported Arduino functions/callbacks
-I implemented the functions millis(), micros() as well as the callback fucntions setup() and loop().  
-I might also add delay(), but a synchronous delay() always freezes the whole application.  
+### Ported Arduino functions/callbacks
+I implemented the functions `millis()`, `micros()` as well as the callback fucntions `setup()` and `loop()`.  
+I might also add `delay()`, but a synchronous `delay()` always freezes the whole thread.  
 And while you might not care about your Arduino being frozen, freezing your browser is a whole other story.
 
 ## Basic setup without the editor and jquery/bootstrap dependency

@@ -4,35 +4,41 @@ Simulates an LED strip and allows very NeoPixel-like access
 ## Ready to use online simulator
 [Click here for a ready-to-use online simulator](http://htmlpreview.github.io/?https://github.com/T-vK/LedStripSimulator/blob/master/index.html)
 
+## Requirements
+Your browser needs:  
+- HTML: HTML5
+- CSS: CSS3
+- JavaScript: ECMAScript6
+
 ## Usage
 You'll wirte your code in JavaScript. But the syntax of original Adafruit_NeoPixel c++ class is simlulated as good as possible.  
 Your original C++ code could for example translate like this:  
 *C++*
 ``` c++
-#define PIN 10
-#define NUM_LEDS = 60
+#define PIN 10;
+#define NUM_LEDS = 60;
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, PIN, NEO_GRB + NEO_KHZ800);
 
 void setup() {
-  strip.begin()
-  strip.show()
+  strip.begin();
+  strip.show();
   
-  strip.setPixelColor(0, Color(255,0,0))
-  strip.show()
+  strip.setPixelColor(0, Color(255,0,0));
+  strip.show();
 }
 ```
 *JavaScript*
 ``` javascript
-const PIN = 10
-const NUM_LEDS = 60
-var strip = new Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800)
+const PIN = 10;
+const NUM_LEDS = 60;
+var strip = new Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);
 
 function setup() {
-  strip.begin()
-  strip.show()
+  strip.begin();
+  strip.show();
   
-  strip.setPixelColor(0, Color(255,0,0))
-  strip.show()
+  strip.setPixelColor(0, Color(255,0,0));
+  strip.show();
 }
 ```
 

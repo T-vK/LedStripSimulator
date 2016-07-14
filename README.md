@@ -36,6 +36,10 @@ function setup() {
 }
 ```
 
+## Ported Arduino functions/callbacks
+I implemented the functions millis(), micros() as well as the callback fucntions setup() and loop().  
+I might also add delay(), but a synchronous delay() always freezes the whole application.  
+And while you might not care about your Arduino being frozen, freezing your browser is a whole other story.
 
 ## Basic setup without the editor and jquery/bootstrap dependency
 - Create a new folder

@@ -36,6 +36,35 @@ function setup() {
 }
 ```
 
+## Setup
+- Create a new folder
+- copy Adafruit_NeoPixel.js into the folder
+- copy Adafruit_NeoPixel.css into the folder
+- create a new .html file with the following contents:
+``` html
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="Adafruit_NeoPixel.css">
+  <script src="Adafruit_NeoPixel.js"></script>
+  <script>
+    //Your code goes here
+    //For example:
+    //function setup() {
+    //  
+    //}
+    //function loop() {
+    //  
+    //}
+  </script>
+</head>
+<body>
+  <!-- In this section you can create new led strips. Remember to define a different "data-pin" for every led strip and use the pin numbers in your code. -->
+  <div class="ledStrip" data-pin="10"></div>
+</body>
+</html>
+```
+
 ## Full example
 The index.html file contains an example.  
 ``` html

@@ -19,7 +19,15 @@
         margin: 0;
     }
     body { padding: 10px; }
+    html,body,#container {height:100%}
     .panel {overflow: hidden; margin-bottom: 7px;}
+    #container {
+      display: flex;
+      flex-direction: column;
+    }
+    .containerChildren {
+      flex: 1;
+    }
   </style>
   
   <script>
@@ -33,20 +41,21 @@
   </script>
 </head>
 <body>
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      Simulated Led Strip
-    </div>
-    <div class="panel-body" style="padding:0;">
-      <div class="ledStrip" data-pin="10"></div>
-    </div>
-  </div>
-  <div class="panel panel-primary">
-    <div class="panel-heading">
-      Your Code
-    </div>
-    <div class="panel-body" style="padding:0;">
-      <div id="editor">//Here is an example
+  <div id="container">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Simulated Led Strip
+        </div>
+        <div class="panel-body" style="padding:0;">
+          <div class="ledStrip" data-pin="10"></div>
+        </div>
+      </div>
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          Your Code
+        </div>
+        <div class="panel-body" style="padding:0;">
+          <div id="editor">//Here is an example
 const PIN = 10; //for now the pin has to be 10
 const NUM_LEDS = 60;
 const BRIGHTNESS = 255;
@@ -87,12 +96,14 @@ function colorWipe(color) {
 } //c++-like static variables for this fucntion:
 colorWipe.delay = 10;
 colorWipe.lastUpdate = 0;
-colorWipe.currentLed = 0;</div>
-    </div>
-  </div>
-    <div class="form-group">
-      <button class="btn btn-primary" style="width:100%" onclick="StartSimulation()">Start Simulation</button>
-    </div>
+colorWipe.currentLed = 0;
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" style="width:100%" onclick="StartSimulation()">Start Simulation</button>
+      </div>
+  <div>
 
   <script>
     var editor = ace.edit("editor");

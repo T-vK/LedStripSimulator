@@ -1,142 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    .ledStrip {
-        background-color: white;
-    }
-    .led {
-      width: 20px;
-      height: 20px;
-      border-radius: 20px;
-      float: left;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="Adafruit_NeoPixel.css">
+  <script src="Adafruit_NeoPixel.js"></script>
   <script>
-    //Constants
-    const NEO_RGB = NEO_RBG = NEO_GRB = NEO_GBR = NEO_BRG = NEO_BGR = 'RGB'
-    const NEO_WRGB = NEO_WRBG = NEO_WGRB = NEO_WGBR = NEO_WBRG = NEO_WBGR = NEO_RWGB = NEO_RWBG = NEO_RGWB = NEO_RGBW = NEO_RBWG = NEO_RBGW = NEO_GWRB = NEO_GWBR = NEO_GRWB = NEO_GRBW = NEO_GBWR =  NEO_GBRW = NEO_BWRG = NEO_BWGR = NEO_BRWG = NEO_BRGW = NEO_BGWR = NEO_BGRW = 'RGBW'
-    const NEO_KHZ800 = NEO_KHZ400 = ''
-    //Class
-    class Adafruit_NeoPixel {
-        constructor(numLEDs, pin, type) {
-            this.numLEDs = numLEDs
-            this.type = type
-            this.pixels = []
-            for (var i=0; i<numLEDs; i++)
-                this.pixels[i] = 0
-            this.brightness = 255
-            this.begun = false
-            this.pin = pin
-        }
-        begin() {
-            this.begun = true
-            this.setPin(this.pin)
-            
-            this.stripDiv.innerHTML = ''
-            this.ledDivs = []
-            for (var i=0; i<this.numLEDs; i++) {
-                var newLedDiv = document.createElement("div")
-                newLedDiv.className = 'led'
-                newLedDiv.style.backgroundColor = '#000000'
-                var newLedDivReal = this.stripDiv.appendChild(newLedDiv)
-                this.ledDivs.push(newLedDivReal)
-            }
-        }
-        show() {
-            // TODO: find a way to convert rgbw to rgb
-            for (var i=0; i<this.numLEDs; i++)
-                this.ledDivs[i].style.backgroundColor = '#' + this.pixels[i].toString(16)
-        }
-        setPin(pin) {
-            var ledStripDivs = document.querySelectorAll('[data-pin]')
-            for (var i=0; i<ledStripDivs.length; i++)
-                if (ledStripDivs[i].getAttribute('data-pin') == pin)
-                    this.stripDiv = ledStripDivs[i]
-            
-            this.pin = pin
-        }
-        setPixelColor(nLed, red_or_color, green=undefined, blue=undefined, white=undefined) {
-            if (green === undefined) { //all colors are in param 2
-                if (this.type === 'RGBW')
-                    white = (red_or_color >> 24) & 0xff
-                green = (red_or_color >> 8) & 0xff
-                blue  = red_or_color & 0xff
-                red_or_color = (red_or_color >> 16) & 0xff
-            }
-            
-            if (this.brightness) {
-                red_or_color = (red_or_color * this.brightness) >> 8
-                green = (green * this.brightness) >> 8
-                blue = (blue * this.brightness) >> 8
-                if (this.type === 'RGBW')
-                    white = (white * this.brightness) >> 8
-            }
-            
-            if (this.type === 'RGB') 
-                this.pixels[nLed] = (red_or_color << 16) + (green << 8) + blue
-            else
-                this.pixels[nLed] = (white << 24) + (red_or_color << 16) + (green << 8) + blue
-        }
-        setBrightness(brightness) {
-            this.brightness = brightness
-        }
-        clear() {
-            for (var i; i<this.numLEDs; i++)
-                this.pixels[i] = 0
-        }
-        updateLength(numLEDs) {
-            this.numLEDs = numLEDs
-        }
-        updateType(type) {
-            this.type = type
-        }
-        getPixels() {
-            return this.pixels
-        }
-        getBrightness() {
-            return this.brightness
-        }
-        numPixels() {
-            return this.numLEDs
-        }
-        
-        Color(red, green, blue, white=undefined) {
-            if (white !== undefined)
-                return (white << 24) + (red << 16) + (green << 8) + blue
-            else
-                return (red << 16) + (green << 8) + blue
-        }
-        getPixelColor(nLed) {
-            var red = (this.pixels[nLed] >> 16) & 0xff
-            var green = (this.pixels[nLed] >> 8) & 0xff
-            var blue  = this.pixels[nLed] & 0xff
-            if (this.type === 'RGBW') {
-                var white = this.pixels[nLed]
-                return (((white << 8) / brightness) << 24) |
-                (((red << 8) / brightness) << 16) |
-                (((green << 8) / brightness) <<  8) |
-                ( (blue << 8) / brightness )
-            } else {
-                return (((red << 8) / brightness) << 16) |
-                (((green << 8) / brightness) <<  8) |
-                ( (blue << 8) / brightness )
-            }
-        }
-        //TODO: find out what that is
-        //canShow() { return (micros() - endTime) >= 50L; }
-    }
-
-    //Other basic arduino functions
-    function micros() {
-        return Date.now()*1000
-    }
-    function millis() {
-        return Date.now()
-    }
-    /////////////////////////////////////////////////////////////////
-
-
     //USER
     const PIN = 10
     const NUM_LEDS = 60
@@ -153,20 +20,21 @@
 
     var red = strip.Color(255, 0, 0)
     var yellow = strip.Color(255, 255, 0)
-    var currentColor = yellow
+    var blue = strip.Color(0, 0, 255)
+    var colors = [red,yellow,blue]
+    var currentColorIndex = 0
     
     function loop() {
-      var animationDone = colorWipe(currentColor)
-      if (animationDone) {
-          currentColor = (currentColor===red ? yellow : red)
-      }
+      var animationDone = colorWipe(colors[currentColorIndex])
+      if (animationDone)
+          currentColorIndex = (currentColorIndex>=colors.length-1 ? 0 : currentColorIndex+1)
     }
 
+    
     function colorWipe(color) { 
       var now = millis()
       if (now > colorWipe.lastUpdate+colorWipe.delay) {
         strip.setPixelColor(colorWipe.currentLed, color)
-        //debugger
         strip.show()
         colorWipe.currentLed = colorWipe.currentLed>=strip.numPixels()-1 ? 0 : colorWipe.currentLed+1
         colorWipe.lastUpdate = now
@@ -175,15 +43,10 @@
             return true;
       }
       return false
-    }
+    } //c++-like static variables for this fucntion:
     colorWipe.delay = 10
     colorWipe.lastUpdate = 0
     colorWipe.currentLed = 0
-
-    document.addEventListener("DOMContentLoaded", function() {
-      setup()
-      setInterval(loop, 1)
-    })
     </script>
 
 </head>

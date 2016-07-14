@@ -126,6 +126,8 @@ function millis() {
     return Date.now()
 }
 document.addEventListener("DOMContentLoaded", function() {
-  setup()
-  setInterval(loop, 1)
+  if (typeof setup != "undefined")
+      setup()
+  if (typeof loop != "undefined")
+      window.loopInterval = setInterval(loop, 1)
 })

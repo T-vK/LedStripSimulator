@@ -1,8 +1,8 @@
 # LedStripSimulator
 Simulates an LED strip and allows very NeoPixel-like access
 
-## Live-Demo
-[Click here for a live demo](http://htmlpreview.github.io/?https://github.com/T-vK/LedStripSimulator/blob/master/index.html)
+## Ready to use online simulator
+[Click here for a ready-to-use online simulator](http://htmlpreview.github.io/?https://github.com/T-vK/LedStripSimulator/blob/master/index.html)
 
 ## Usage
 You'll wirte your code in JavaScript. But the syntax of original Adafruit_NeoPixel c++ class is simlulated as good as possible.  
@@ -36,7 +36,8 @@ function setup() {
 }
 ```
 
-## Setup
+
+## Basic setup without the editor and jquery/bootstrap dependency
 - Create a new folder
 - copy Adafruit_NeoPixel.js into the folder
 - copy Adafruit_NeoPixel.css into the folder
@@ -65,8 +66,8 @@ function setup() {
 </html>
 ```
 
-## Full example
-The index.html file contains an example.  
+#### Full example
+The BasicExample.html file contains an example.  
 ``` html
 <!DOCTYPE html>
 <html>

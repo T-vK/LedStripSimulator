@@ -1,5 +1,7 @@
 .ledStrip {
     background-color: white;
+    padding: 20px;
+    padding-top: 10px;
 }
 .led {
   width: 10px;

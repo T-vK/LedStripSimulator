@@ -1,56 +1,101 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <title>LedStripSimulator by t-vk</title>
+  
   <link rel="stylesheet" type="text/css" href="Adafruit_NeoPixel.css">
   <script src="Adafruit_NeoPixel.js"></script>
+  
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  
+  <script src="https://cdn.jsdelivr.net/ace/1.2.3/min/ace.js"></script>
+  <style type="text/css" media="screen">
+    #editor { 
+        width: 100%;
+        height: 500px;
+        margin: 0;
+    }
+  </style>
+  
   <script>
-    //USER
-    const PIN = 10
-    const NUM_LEDS = 60
-    const BRIGHTNESS = 255
-
-    //ws2812b, arduino pro mini
-    var strip = new Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800)
-
-    function setup() {
-      strip.setBrightness(BRIGHTNESS)
-      strip.begin()
-      strip.show()
+    function StartSimulation() {
+        if (window.loopInterval)
+            clearInterval(window.loopInterval)
+        eval(ace.edit("editor").getValue());
+        setup();
+        window.loopInterval = setInterval(loop, 1);
     }
-
-    var red = strip.Color(255, 0, 0)
-    var yellow = strip.Color(255, 255, 0)
-    var blue = strip.Color(0, 0, 255)
-    var colors = [red,yellow,blue]
-    var currentColorIndex = 0
-    
-    function loop() {
-      var animationDone = colorWipe(colors[currentColorIndex])
-      if (animationDone)
-          currentColorIndex = (currentColorIndex>=colors.length-1 ? 0 : currentColorIndex+1)
-    }
-
-    
-    function colorWipe(color) { 
-      var now = millis()
-      if (now > colorWipe.lastUpdate+colorWipe.delay) {
-        strip.setPixelColor(colorWipe.currentLed, color)
-        strip.show()
-        colorWipe.currentLed = colorWipe.currentLed>=strip.numPixels()-1 ? 0 : colorWipe.currentLed+1
-        colorWipe.lastUpdate = now
-        
-        if (colorWipe.currentLed === 0)
-            return true;
-      }
-      return false
-    } //c++-like static variables for this fucntion:
-    colorWipe.delay = 10
-    colorWipe.lastUpdate = 0
-    colorWipe.currentLed = 0
-    </script>
-
+  </script>
 </head>
 <body>
-  <div class="ledStrip" data-pin="10"></div>
+  <div class="panel panel-primary" style="margin:10px;">
+    <div class="panel-heading">
+      Simulated Led Strip
+    </div>
+    <div class="panel-body" style="padding:0;">
+      <div class="ledStrip" data-pin="10"></div>
+    </div>
+  </div>
+  <div class="panel panel-primary" style="margin:10px;">
+    <div class="panel-heading">
+      Code
+    </div>
+    <div class="panel-body" style="padding:0;">
+      <div id="editor">var PIN = 10; //for now the pin has to be 10
+var NUM_LEDS = 60;
+var BRIGHTNESS = 255;
+
+//ws2812b with Arduino Uno
+var strip = new Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);
+
+function setup() {
+  strip.setBrightness(BRIGHTNESS);
+  strip.begin();
+  strip.show();
+}
+
+var red = strip.Color(255, 0, 0);
+var yellow = strip.Color(255, 255, 0);
+var blue = strip.Color(0, 0, 255);
+var colors = [red,yellow,blue];
+var currentColorIndex = 0;
+
+function loop() {
+  var animationDone = colorWipe(colors[currentColorIndex]);
+  if (animationDone)
+      currentColorIndex = (currentColorIndex>=colors.length-1 ? 0 : currentColorIndex+1);
+}
+
+function colorWipe(color) { 
+  var now = millis();
+  if (now > colorWipe.lastUpdate+colorWipe.delay) {
+    strip.setPixelColor(colorWipe.currentLed, color);
+    strip.show();
+    colorWipe.currentLed = colorWipe.currentLed>=strip.numPixels()-1 ? 0 : colorWipe.currentLed+1;
+    colorWipe.lastUpdate = now;
+    
+    if (colorWipe.currentLed === 0)
+        return true;
+  }
+  return false;
+} //c++-like static variables for this fucntion:
+colorWipe.delay = 10;
+colorWipe.lastUpdate = 0;
+colorWipe.currentLed = 0;</div>
+    </div>
+    <div class="form-group" style="margin:1px">
+      <button class="btn btn-primary" style="width:100%" onclick="StartSimulation()">Start Simulation</button>
+    </div>
+  </div>
+
+  <script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/javascript");
+    editor.setShowPrintMargin(false);
+  </script>
 </body>
 </html>

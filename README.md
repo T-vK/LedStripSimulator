@@ -6,7 +6,8 @@ Simulates an LED strip and allows very NeoPixel-like access
 
 ## Usage
 You'll wirte your code in JavaScript. But the syntax of original Adafruit_NeoPixel c++ class is simlulated as good as possible.  
-Your original C++ code could for example translate like this:
+Your original C++ code could for example translate like this:  
+C++  
 ``` c++
 #define PIN 10
 #define NUM_LEDS = 60
@@ -20,6 +21,7 @@ void setup() {
   strip.show()
 }
 ```
+JavaScript  
 ``` javascript
 const PIN = 10
 const NUM_LEDS = 60

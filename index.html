@@ -18,6 +18,8 @@
         height: 500px;
         margin: 0;
     }
+    body { padding: 10px; }
+    .panel {overflow: hidden; margin-bottom: 7px;}
   </style>
   
   <script>
@@ -31,7 +33,7 @@
   </script>
 </head>
 <body>
-  <div class="panel panel-primary" style="margin:10px;">
+  <div class="panel panel-primary">
     <div class="panel-heading">
       Simulated Led Strip
     </div>
@@ -39,7 +41,7 @@
       <div class="ledStrip" data-pin="10"></div>
     </div>
   </div>
-  <div class="panel panel-primary" style="margin:10px;">
+  <div class="panel panel-primary">
     <div class="panel-heading">
       Code
     </div>
@@ -86,10 +88,10 @@ colorWipe.delay = 10;
 colorWipe.lastUpdate = 0;
 colorWipe.currentLed = 0;</div>
     </div>
-    <div class="form-group" style="margin:1px">
+  </div>
+    <div class="form-group">
       <button class="btn btn-primary" style="width:100%" onclick="StartSimulation()">Start Simulation</button>
     </div>
-  </div>
 
   <script>
     var editor = ace.edit("editor");

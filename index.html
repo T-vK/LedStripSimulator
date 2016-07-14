@@ -44,15 +44,15 @@
           <div class="ledStrip" data-pin="10"></div>
         </div>
       </div>
-      <div class="panel panel-primary" style="flex:1">
+      <div class="panel panel-primary" style="flex:1;display: flex;flex-direction: column;">
         <div class="panel-heading">
           Your Code
         </div>
-        <div class="panel-body" style="padding:0;">
-          <div id="editor">//Here is an example
-const PIN = 10; //for now the pin has to be 10
-const NUM_LEDS = 60;
-const BRIGHTNESS = 255;
+        <div class="panel-body" style="padding:0;flex: 1;display: flex;flex-direction: column;">
+          <div id="editor" style="flex:1">//Here is an example
+var PIN = 10; //for now the pin has to be 10
+var NUM_LEDS = 60;
+var BRIGHTNESS = 255;
 
 //ws2812b with Arduino Uno
 var strip = new Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);

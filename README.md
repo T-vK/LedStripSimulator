@@ -5,13 +5,14 @@ Simulates an LED strip and allows very NeoPixel-like access
 [Click here for a ready-to-use online simulator](http://htmlpreview.github.io/?https://github.com/T-vK/LedStripSimulator/blob/master/index.html)
 
 ## Screenshot
-![Screenshot](screenshot.png)
+![Screenshot](screenshot.jpg)
 
 ## Requirements
 Your browser needs:  
 - HTML: HTML5
 - CSS: CSS3
 - JavaScript: ECMAScript6
+The newest version of Firefox/Chrome/Opera/Safari/Edge should work fine.
 
 ## Usage
 You'll wirte your code in JavaScript. But the syntax of original Adafruit_NeoPixel c++ class is simlulated as good as possible.  

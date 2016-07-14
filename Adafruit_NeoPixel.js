@@ -37,6 +37,7 @@ class Adafruit_NeoPixel {
             for (var j=0; j<zeroesToAdd; j++)
                 hexColor = '0' + hexColor
             this.ledDivs[i].style.backgroundColor = '#' + hexColor
+            this.ledDivs[i].style.boxShadow = '#' + hexColor + ' 0 0 4px 1px ' + ', inset rgba(0, 0, 0, 0.2) 0 -1px 4px, inset rgba(0, 0, 0, 0.2) 0 1px 5px'
         }
     }
     setPin(pin) {

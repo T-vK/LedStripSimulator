@@ -18,9 +18,10 @@ var currentColorIndex = 0;
 
 function loop() {
   var animationDone = colorWipe(colors[currentColorIndex]);
-  if (animationDone);
+  if (animationDone)
       currentColorIndex = (currentColorIndex>=colors.length-1 ? 0 : currentColorIndex+1);
 }
+
 
 function colorWipe(color) { 
   var now = millis();
@@ -29,7 +30,7 @@ function colorWipe(color) {
     strip.show();
     colorWipe.currentLed = colorWipe.currentLed>=strip.numPixels()-1 ? 0 : colorWipe.currentLed+1;
     colorWipe.lastUpdate = now;
-    
+
     if (colorWipe.currentLed === 0)
         return true;
   }

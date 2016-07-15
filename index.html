@@ -90,7 +90,7 @@
             button.html($(this).text() + ' <span class="caret"></span>');
             button.val($(this).data('value'));
             
-            if (dropDown.id === "ExampleDropDown") {
+            if (dropDown.attr('id') === "ExampleDropDown") {
                 LoadExample($(this).data('value'));
             }
         });	

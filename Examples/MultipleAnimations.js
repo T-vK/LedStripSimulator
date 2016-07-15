@@ -7,7 +7,7 @@ var strip = new Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);
 
 var patternInterval = 20; // time between steps in the pattern
 var lastUpdate = 0; // for millis() when last update occoured
-var intervals = [ 20, 20, 50, 100 ]; // speed for each pattern
+var intervals = [ 2, 2, 20, 10 ]; // speed for each pattern
 var modeDuration = 5000; // duration of each mode
 
 function setup() {

@@ -2,6 +2,7 @@
     background-color: #000000;
     padding: 20px;
     padding-top: 10px;
+    height:100%
 }
 .led {
   width: 10px;

@@ -24,7 +24,6 @@ class Adafruit_NeoPixel {
         for (var i=0; i<this.numLEDs; i++) {
             var newLedDiv = document.createElement("div")
             newLedDiv.className = 'led'
-            newLedDiv.style.backgroundColor = '#000000'
             var newLedDivReal = this.stripDiv.appendChild(newLedDiv)
             this.ledDivs.push(newLedDivReal)
         }
@@ -36,8 +35,7 @@ class Adafruit_NeoPixel {
             var zeroesToAdd = 6-hexColor.length
             for (var j=0; j<zeroesToAdd; j++)
                 hexColor = '0' + hexColor
-            this.ledDivs[i].style.backgroundColor = '#' + hexColor
-            this.ledDivs[i].style.boxShadow = '#' + hexColor + ' 0 0 4px 1px ' + ', inset rgba(0, 0, 0, 0.2) 0 -1px 4px, inset rgba(0, 0, 0, 0.2) 0 1px 5px'
+            this.ledDivs[i].style.color = '#' + hexColor
         }
     }
     setPin(pin) {

@@ -1,5 +1,5 @@
 .ledStrip {
-    background-color: white;
+    background-color: #000000;
     padding: 20px;
     padding-top: 10px;
 }
@@ -10,4 +10,7 @@
   margin-bottom: 10px;
   border-radius: 10px;
   float: left;
+  color: #000000;
+  background-color: currentColor;
+  box-shadow: currentColor 0 0 4px 1px, inset 0px 0px 1px 0px rgba(0,0,0,0.1);
 }

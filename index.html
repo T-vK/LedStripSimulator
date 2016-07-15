@@ -44,6 +44,17 @@
 </head>
 <body>
   <div id="container">
+      <div class="btn-group" role="group" style="margin-bottom: 7px;">
+           <button type="button" style="float: left; width: 100%" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" value="MultipleAnimations" aria-haspopup="true" aria-expanded="false">
+             Examples/Templates
+             <span class="caret"></span>
+           </button>
+           <ul class="dropdown-menu" id="ExampleDropDown" style="width: 100%">
+               <li><a href="#!" data-value="MultipleAnimations">Multiple Animations</a></li>
+               <li><a href="#!" data-value="BasicTemplate">Basic Template</a></li>
+               <li><a href="#!" data-value="ColorWipeAnimations">Color Wipe Animations</a></li>
+           </ul>
+      </div>
       <div class="panel panel-primary">
         <div class="panel-heading">
           Simulated Led Strip
@@ -61,17 +72,6 @@
         </div>
       </div>
       <button class="btn btn-primary" style="width:100%; height: 40px;" onclick="StartSimulation()">Start Simulation</button>
-      <div class="btn-group" role="group">
-           <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" value="Silver" aria-haspopup="true" aria-expanded="false">
-             Examples/Templates
-             <span class="caret"></span>
-           </button>
-           <ul class="dropdown-menu" id="ExampleDropDown">
-               <li><a href="#!" data-value="BasicTemplate">Basic Template</a></li>
-               <li><a href="#!" data-value="MultipleAnimations">Multiple Animations</a></li>
-               <li><a href="#!" data-value="ColorWipeAnimations">Color Wipe Animations</a></li>
-           </ul>
-      </div>
   <div>
 
   <script>

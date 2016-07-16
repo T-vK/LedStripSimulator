@@ -58,7 +58,7 @@ class Adafruit_NeoPixel {
         } else {
             for (var i=0; i<this.numLEDs; i++) {
                 var codeToPost = `
-                    var hexColor = ${this.pixels[i].toString(16)}
+                    var hexColor = '${this.pixels[i].toString(16)}'
                     var zeroesToAdd = 6-hexColor.length
                     for (var j=0; j<zeroesToAdd; j++)
                         hexColor = '0' + hexColor

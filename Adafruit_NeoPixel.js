@@ -164,11 +164,15 @@ function micros() {
 function millis() {
     return Date.now()
 }
+function delay(millis) {
+    var now = Date.now();
+    while(Date.now() < now + millis){} 
+}
 if (typeof document != "undefined") {
     document.addEventListener("DOMContentLoaded", function() {
       if (typeof setup != "undefined")
           setup()
       if (typeof loop != "undefined")
-          window.loopInterval = setInterval(loop, 1)
+          window.loopInterval = setInterval(loop, 10)
     })
 }

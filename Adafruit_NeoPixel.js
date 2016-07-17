@@ -68,7 +68,6 @@ class Adafruit_NeoPixel {
                 console.log("CodeThread:")
                 console.log(codeToPost)
                 postMessage(codeToPost)
-                console.log("test")
             }
         }
     }

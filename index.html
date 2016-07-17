@@ -44,7 +44,11 @@
             codeThread = undefined;
         }
         codeThread = new Worker(window.URL.createObjectURL(blob)); 
-        codeThread.onmessage = function(event){console.log(event.data); eval(event.data); console.log("ok");}; 
+        codeThread.onmessage = function(event){
+            //console.log(event.data);
+            eval(event.data);
+            //console.log("ok");
+        }; 
     }
     function LoadExample(file) {
         getFile('./Examples/' + file + '.js',function (fileContent) {

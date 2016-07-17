@@ -25,30 +25,45 @@
   </style>
   
   <script>
+    getFile('./Adafruit_NeoPixel.js',function (fileContent) {
+        window.Adafruit_NeoPixel_Script = fileContent;
+    });
+    
     var codeThread = undefined;
     var callbackTemplate = `
         if (typeof setup != "undefined")
             setup();
         if (typeof loop != "undefined")
-            setInterval(loop, 1);
-    `;
-    getFile('./Adafruit_NeoPixel.js',function (fileContent) {
-        window.Adafruit_NeoPixel_Script = fileContent;
-    });
-    
-    function StartSimulation() {
+            setInterval(loop, 10);
+    `;    
+    function StartSimulationThread() {
+        StopSimulation()
         var blob = new Blob([Adafruit_NeoPixel_Script, editor.getValue(), callbackTemplate], { type: "text/javascript" });
-    
-        if (codeThread !== undefined) {
-            codeThread.terminate();
-            codeThread = undefined;
-        }
         codeThread = new Worker(window.URL.createObjectURL(blob)); 
         codeThread.onmessage = function(event){
             //console.log(event.data);
             eval(event.data);
             //console.log("ok");
         }; 
+    }
+    function StartSimulation() {
+        StopSimulation()
+        eval(editor.getValue())
+        if (typeof setup != "undefined")
+            setup()
+        if (typeof loop != "undefined")
+            window.loopInterval = setInterval(loop, 10)
+    }
+    function StopSimulation() {
+        if (codeThread !== undefined) {
+            codeThread.terminate();
+            codeThread = undefined;
+        }
+        if (typeof window.loopInterval != "undefined") {
+            clearInterval(window.loopInterval);
+            window.loopInterval = undefined;
+        }
+        
     }
     function LoadExample(file) {
         getFile('./Examples/' + file + '.js',function (fileContent) {
@@ -95,7 +110,9 @@
           <div id="editor" style="flex:1"></div>
         </div>
       </div>
-      <button class="btn btn-primary" style="width:100%; height: 40px;" onclick="StartSimulation()">Start Simulation</button>
+      <button class="btn btn-primary" style="width:100%;" onclick="StartSimulation()">Start Simulation</button>
+      <button class="btn btn-danger" style="width:100%; margin-top:7px;" onclick="StartSimulationThread()">Start Simulation in new thread (still in development)</button>
+      <button class="btn btn-primary" style="width:100%; margin-top:7px;" onclick="StopSimulation()">Stop Simulation</button>
   <div>
 
   <script>

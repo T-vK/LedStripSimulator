@@ -177,6 +177,6 @@ if (typeof document != "undefined") {
       if (typeof setup != "undefined")
           setup()
       if (typeof loop != "undefined")
-          window.loopInterval = setInterval(loop, 10)
+          window.loopInterval = setInterval(loop, 1)
     })
 }

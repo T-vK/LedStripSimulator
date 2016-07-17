@@ -88,10 +88,10 @@
              <span class="caret"></span>
            </button>
            <ul class="dropdown-menu" id="ExampleDropDown" style="width: 100%">
-               <li><a href="#!" data-value="Test">Test</a></li>
                <li><a href="#!" data-value="MultipleAnimations">Multiple Animations</a></li>
                <li><a href="#!" data-value="BasicTemplate">Basic Template</a></li>
                <li><a href="#!" data-value="ColorWipeAnimations">Color Wipe Animations</a></li>
+               <li><a href="#!" data-value="Test">Turn first LED red</a></li>
            </ul>
       </div>
       <div class="panel panel-primary">
@@ -110,8 +110,10 @@
           <div id="editor" style="flex:1"></div>
         </div>
       </div>
-      <button class="btn btn-primary" style="width:100%;" onclick="StartSimulation()">Start Simulation</button>
-      <button class="btn btn-danger" style="width:100%; margin-top:7px;" onclick="StartSimulationThread()">Start Simulation in new thread (still in development)</button>
+      <div class="btn-group" style="margin-top:7px;">
+        <button class="btn btn-primary" style="width:50%;" onclick="StartSimulation()">Start Simulation</button>
+        <button class="btn btn-danger" style="width:50%;" onclick="StartSimulationThread()">Start Simulation in new thread (still in development)</button>
+      </div>
       <button class="btn btn-primary" style="width:100%; margin-top:7px;" onclick="StopSimulation()">Stop Simulation</button>
   <div>
 
@@ -138,8 +140,8 @@
        // $("#ExampleDropDown li a").click(function(){
        //     
        // }
-       //LoadExample("MultipleAnimations");
-       LoadExample("Test"); 
+       LoadExample("MultipleAnimations");
+       //LoadExample("Test"); 
     });
   </script>
 </body>

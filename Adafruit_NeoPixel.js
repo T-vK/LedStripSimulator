@@ -40,8 +40,8 @@ class Adafruit_NeoPixel {
                     window.ledDivs.push(newLedDivReal)
                 }
             `;
-            console.log("CodeThread:")
-            console.log(codeToPost)
+            //console.log("CodeThread:")
+            //console.log(codeToPost)
             postMessage(codeToPost)
         }
         
@@ -65,8 +65,8 @@ class Adafruit_NeoPixel {
                         hexColor = '0' + hexColor
                     window.ledDivs[${i}].style.color = '#' + hexColor
                 `;
-                console.log("CodeThread:")
-                console.log(codeToPost)
+                //console.log("CodeThread:")
+                //console.log(codeToPost)
                 postMessage(codeToPost)
             }
         }
@@ -84,8 +84,8 @@ class Adafruit_NeoPixel {
                     if (ledStripDivs[i].getAttribute('data-pin') == ${pin})
                         window.stripDiv = ledStripDivs[i]
             `;
-            console.log("CodeThread:")
-            console.log(codeToPost)
+            //console.log("CodeThread:")
+            //console.log(codeToPost)
             postMessage(codeToPost)
         }
         this.pin = pin

@@ -3,6 +3,8 @@
 <head>
   <title>LedStripSimulator by t-vk</title>
   
+  <meta charset="UTF-8"> 
+  
   <link rel="stylesheet" type="text/css" href="Adafruit_NeoPixel.css">
   <script id="Adafruit_NeoPixel" src="Adafruit_NeoPixel.js"></script>
   
@@ -34,7 +36,7 @@
         if (typeof setup != "undefined")
             setup();
         if (typeof loop != "undefined")
-            setInterval(loop, 10);
+            setInterval(loop, 100);
     `;    
     function StartSimulationThread() {
         StopSimulation()
@@ -52,7 +54,7 @@
         if (typeof setup != "undefined")
             setup()
         if (typeof loop != "undefined")
-            window.loopInterval = setInterval(loop, 10)
+            window.loopInterval = setInterval(loop, 100)
     }
     function StopSimulation() {
         if (codeThread !== undefined) {
@@ -67,7 +69,7 @@
     }
     function LoadExample(file) {
         getFile('./Examples/' + file + '.js',function (fileContent) {
-            editor.setValue(fileContent)
+            editor.setValue(fileContent,-1)
         });
     }
     function getFile(file,callback) {
@@ -118,10 +120,17 @@
   <div>
 
   <script>
-    var editor = ace.edit("editor");
+    var editor = ace.edit("editor");    
+    var editorSession = editor.getSession();
+    editorSession.setUseWorker(false);
+    editorSession.setMode("ace/mode/javascript");
+    editorSession.setOption("tabSize", 2);
+    editorSession.setOption("useSoftTabs", false);
+    
+    editor.$blockScrolling = Infinity;
     editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/javascript");
     editor.setShowPrintMargin(false);
+    editor.focus();
   </script>
   
   <script>

@@ -90,6 +90,7 @@
              <span class="caret"></span>
            </button>
            <ul class="dropdown-menu" id="ExampleDropDown" style="width: 100%">
+               <li><a href="#!" data-value="Blink">Single LED Blink</a></li>
                <li><a href="#!" data-value="MultipleAnimations">Multiple Animations</a></li>
                <li><a href="#!" data-value="BasicTemplate">Basic Template</a></li>
                <li><a href="#!" data-value="ColorWipeAnimations">Color Wipe Animations</a></li>
@@ -112,9 +113,12 @@
           <div id="editor" style="flex:1"></div>
         </div>
       </div>
-      <div class="btn-group" style="margin-top:7px;">
-        <button class="btn btn-primary" style="width:50%;" onclick="StartSimulation()">Start Simulation</button>
-        <button class="btn btn-danger" style="width:50%;" onclick="StartSimulationThread()">Start Simulation in new thread (still in development)</button>
+      <div style="text-align: center; margin-bottom: 0px; margin-top:5px;" class="alert alert-danger" role="alert">
+        <span style="text-align: center;">When using delay() in your code, you should always use the left button to start a new thread! Otherwise the UI or your whole browser might freeze during the delay() execution.</span>
+      </div>
+      <div class="btn-group" style="margin-top:5px;">
+        <button class="btn btn-primary" style="width:50%;" onclick="StartSimulationThread()">Start Simulation in new thread </button>
+        <button class="btn btn-danger" style="width:50%;" onclick="StartSimulation()">Start Simulation single threaded</button>
       </div>
       <button class="btn btn-primary" style="width:100%; margin-top:7px;" onclick="StopSimulation()">Stop Simulation</button>
   <div>
@@ -145,12 +149,8 @@
             if (dropDown.attr('id') === "ExampleDropDown") {
                 LoadExample($(this).data('value'));
             }
-        });	
-       // $("#ExampleDropDown li a").click(function(){
-       //     
-       // }
-       LoadExample("MultipleAnimations");
-       //LoadExample("Test"); 
+        });
+       LoadExample("Blink");
     });
   </script>
 </body>

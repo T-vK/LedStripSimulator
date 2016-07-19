@@ -47,10 +47,10 @@ function setup() {
 ```
 
 ### Ported Arduino functions/callbacks
-I implemented the functions `millis()`, `micros()` as well as the callback fucntions `setup()` and `loop()`.  
-I might also add `delay()`, but a synchronous `delay()` always freezes the whole thread.  
-And while you might not care about your Arduino being frozen, freezing your browser is a whole other story.
+I implemented the functions `millis()`, `micros()`, `delay()` as well as the callback fucntions `setup()` and `loop()`.  
+About `delay()`: Use it wisely. It will freeze it's thread while it is running. To prevent UI or whole browser freezing, run your code in a new thread (worker).
 
+# DIY
 ## Basic setup without the editor and jquery/bootstrap dependency
 - Create a new folder
 - copy Adafruit_NeoPixel.js into the folder

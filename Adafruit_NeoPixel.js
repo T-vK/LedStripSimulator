@@ -9,6 +9,7 @@ class Adafruit_NeoPixel {
         this.numLEDs = numLEDs
         this.type = type
         this.pixels = []
+        this.lastPixels = []
         for (var i=0; i<numLEDs; i++)
             this.pixels[i] = 0
         this.brightness = 255
@@ -48,26 +49,28 @@ class Adafruit_NeoPixel {
     }
     show() {
         // TODO: find a way to convert rgbw to rgb
-        if (typeof document != "undefined") {
-            for (var i=0; i<this.numLEDs; i++) {
-                var hexColor = this.pixels[i].toString(16)
-                var zeroesToAdd = 6-hexColor.length
-                for (var j=0; j<zeroesToAdd; j++)
-                    hexColor = '0' + hexColor
-                this.ledDivs[i].style.color = '#' + hexColor
-            }
-        } else {
-            for (var i=0; i<this.numLEDs; i++) {
-                var codeToPost = `
-                    var hexColor = '${this.pixels[i].toString(16)}'
+        if (this.lastPixels !== this.pixels) {
+            if (typeof document != "undefined") {
+                for (var i=0; i<this.numLEDs; i++) {
+                    var hexColor = this.pixels[i].toString(16)
                     var zeroesToAdd = 6-hexColor.length
                     for (var j=0; j<zeroesToAdd; j++)
                         hexColor = '0' + hexColor
-                    window.ledDivs[${i}].style.color = '#' + hexColor
-                `;
-                //console.log("CodeThread:")
-                //console.log(codeToPost)
-                postMessage(codeToPost)
+                    this.ledDivs[i].style.color = '#' + hexColor
+                }
+            } else {
+                for (var i=0; i<this.numLEDs; i++) {
+                    var codeToPost = `
+                        var hexColor = '${this.pixels[i].toString(16)}'
+                        var zeroesToAdd = 6-hexColor.length
+                        for (var j=0; j<zeroesToAdd; j++)
+                            hexColor = '0' + hexColor
+                        window.ledDivs[${i}].style.color = '#' + hexColor
+                    `;
+                    //console.log("CodeThread:")
+                    //console.log(codeToPost)
+                    postMessage(codeToPost)
+                }
             }
         }
     }

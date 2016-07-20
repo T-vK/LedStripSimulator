@@ -36,7 +36,7 @@
         if (typeof setup != "undefined")
             setup();
         if (typeof loop != "undefined")
-            setInterval(loop, 100);
+            setInterval(loop, 1);
     `;    
     function StartSimulationThread() {
         StopSimulation()
@@ -54,7 +54,7 @@
         if (typeof setup != "undefined")
             setup()
         if (typeof loop != "undefined")
-            window.loopInterval = setInterval(loop, 100)
+            window.loopInterval = setInterval(loop, 1)
     }
     function StopSimulation() {
         if (codeThread !== undefined) {

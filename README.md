@@ -2,7 +2,7 @@
 Simulates an LED strip and allows very NeoPixel-like access
 
 ## Ready to use online simulator
-[Click here for a ready-to-use online simulator](http://htmlpreview.github.io/?https://github.com/T-vK/LedStripSimulator/blob/master/index.html)
+[Click here for a ready-to-use online simulator](https://t-vk.github.io/LedStripSimulator/)
 
 ## Screenshot
 ![Screenshot](screenshot.jpg)

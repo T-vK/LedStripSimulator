@@ -21,7 +21,7 @@ Your original C++ code could for example translate like this:
 ``` c++
 #define PIN 10;
 #define NUM_LEDS = 60;
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(60, PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUM_LEDS, PIN, NEO_GRB + NEO_KHZ800);
 
 void setup() {
   strip.begin();
